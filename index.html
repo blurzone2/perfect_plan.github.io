@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>公司介紹</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;700&family=Noto+Sans+TC:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --pink-lightest: #fff0f5;
+      --pink-light: #ffd6e7;
+      --pink-mid: #ffadd2;
+      --pink-main: #f06292;
+      --pink-deep: #c2185b;
+      --pink-text: #880e4f;
+      --cream: #fffaf8;
+      --gray: #6b5b60;
+      --gray-light: #c9b8bc;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Noto Sans TC', sans-serif;
+      background: var(--cream);
+      color: #3a2a2e;
+      line-height: 1.7;
+      min-height: 100vh;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      top: -120px; right: -120px;
+      width: 420px; height: 420px;
+      background: radial-gradient(circle, var(--pink-light) 0%, transparent 70%);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 0;
+    }
+    body::after {
+      content: '';
+      position: fixed;
+      bottom: -100px; left: -80px;
+      width: 340px; height: 340px;
+      background: radial-gradient(circle, #ffe0ee 0%, transparent 70%);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .page {
+      max-width: 780px;
+      margin: 0 auto;
+      padding: 60px 24px 80px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero {
+      text-align: center;
+      padding: 56px 0 48px;
+    }
+
+    .avatar-ring {
+      display: inline-block;
+      padding: 4px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--pink-main), #f48fb1, #ce93d8);
+      margin-bottom: 24px;
+    }
+    .avatar {
+      width: 112px; height: 112px;
+      border-radius: 50%;
+      background: var(--pink-lightest);
+      border: 4px solid white;
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Noto Serif TC', serif;
+      font-size: 40px;
+      color: var(--pink-main);
+    }
+
+    .hero h1 {
+      font-family: 'Noto Serif TC', serif;
+      font-size: 2.2rem;
+      font-weight: 700;
+      color: var(--pink-text);
+      letter-spacing: 0.06em;
+      margin-bottom: 8px;
+    }
+    .hero .subtitle {
+      font-size: 1rem;
+      color: var(--gray);
+      letter-spacing: 0.08em;
+      margin-bottom: 28px;
+    }
+
+    .tags {
+      display: flex; flex-wrap: wrap; gap: 8px;
+      justify-content: center;
+      margin-bottom: 32px;
+    }
+    .tag {
+      background: white;
+      border: 1px solid var(--pink-mid);
+      color: var(--pink-deep);
+      font-size: 13px;
+      padding: 5px 14px;
+      border-radius: 20px;
+    }
+
+    .social-links {
+      display: flex; gap: 14px; justify-content: center;
+    }
+    .social-links a {
+      display: inline-flex; align-items: center; gap: 6px;
+      color: var(--pink-deep);
+      text-decoration: none;
+      font-size: 13px;
+      border: 1px solid var(--pink-mid);
+      padding: 6px 16px;
+      border-radius: 20px;
+      background: white;
+      transition: background 0.2s, color 0.2s;
+    }
+    .social-links a:hover {
+      background: var(--pink-main);
+      color: white;
+      border-color: var(--pink-main);
+    }
+
+    section { margin-bottom: 56px; }
+
+    .section-title {
+      font-family: 'Noto Serif TC', serif;
+      font-size: 1.25rem;
+      color: var(--pink-text);
+      margin-bottom: 20px;
+      display: flex; align-items: center; gap: 10px;
+    }
+    .section-title::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--pink-light);
+    }
+
+    .about-box {
+      background: white;
+      border: 1px solid var(--pink-light);
+      border-radius: 16px;
+      padding: 28px 32px;
+      font-size: 15px;
+      color: #4a3438;
+      line-height: 1.9;
+      box-shadow: 0 4px 24px rgba(240,98,146,0.06);
+    }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 14px;
+    }
+    .skill-card {
+      background: white;
+      border: 1px solid var(--pink-light);
+      border-radius: 14px;
+      padding: 20px 20px 16px;
+      box-shadow: 0 2px 12px rgba(240,98,146,0.05);
+    }
+    .skill-icon { font-size: 24px; margin-bottom: 10px; }
+    .skill-name { font-size: 14px; font-weight: 500; color: var(--pink-text); margin-bottom: 4px; }
+    .skill-desc { font-size: 12px; color: var(--gray); }
+
+    .project-list { display: flex; flex-direction: column; gap: 16px; }
+    .project-card {
+      background: white;
+      border: 1px solid var(--pink-light);
+      border-left: 4px solid var(--pink-main);
+      border-radius: 12px;
+      padding: 20px 24px;
+      box-shadow: 0 2px 12px rgba(240,98,146,0.05);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .project-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 24px rgba(240,98,146,0.12);
+    }
+    .project-header {
+      display: flex; justify-content: space-between; align-items: flex-start;
+      margin-bottom: 8px;
+    }
+    .project-name { font-size: 16px; font-weight: 500; color: var(--pink-text); }
+    .project-badge {
+      font-size: 11px;
+      background: var(--pink-lightest);
+      color: var(--pink-deep);
+      border: 1px solid var(--pink-mid);
+      padding: 3px 10px;
+      border-radius: 20px;
+    }
+    .project-desc { font-size: 14px; color: var(--gray); line-height: 1.7; }
+
+    .contact-box {
+      background: linear-gradient(135deg, #fff0f8, #fde8f3);
+      border: 1px solid var(--pink-light);
+      border-radius: 20px;
+      padding: 40px;
+      text-align: center;
+      box-shadow: 0 4px 32px rgba(240,98,146,0.08);
+    }
+    .contact-box p { font-size: 15px; color: var(--gray); margin-bottom: 24px; }
+    .contact-btn {
+      display: inline-block;
+      background: var(--pink-main);
+      color: white;
+      text-decoration: none;
+      padding: 12px 32px;
+      border-radius: 28px;
+      font-size: 15px;
+      letter-spacing: 0.04em;
+      box-shadow: 0 4px 16px rgba(240,98,146,0.3);
+      transition: background 0.2s, transform 0.2s;
+    }
+    .contact-btn:hover { background: var(--pink-deep); transform: translateY(-2px); }
+
+    footer {
+      text-align: center;
+      font-size: 12px;
+      color: var(--gray-light);
+      padding: 32px 0 16px;
+      border-top: 1px solid var(--pink-light);
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(18px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .hero   { animation: fadeUp 0.6s ease both; }
+    section { animation: fadeUp 0.6s ease both; }
+    section:nth-of-type(1) { animation-delay: 0.1s; }
+    section:nth-of-type(2) { animation-delay: 0.2s; }
+    section:nth-of-type(3) { animation-delay: 0.3s; }
+    section:nth-of-type(4) { animation-delay: 0.4s; }
+  </style>
+</head>
+<body>
+  <div class="page">
+
+    <div class="hero">
+      <div class="avatar-ring">
+        <div class="avatar">你</div>
+      </div>
+      <h1>玩美計畫</h1>
+      <p class="subtitle">女友體驗 · 國外伴遊 · 經紀公關</p>
+      <div class="tags">
+        <span class="tag">UI/UX 設計</span>
+        <span class="tag">前端開發</span>
+        <span class="tag">攝影</span>
+        <span class="tag">喜歡貓咪 🐱</span>
+      </div>
+      <div class="social-links">
+        <a href="https://github.com/" target="_blank">GitHub</a>
+        <a href="https://line.me/R/ti/p/@798kabdd" target="_blank">LINE</a>
+        <a href="https://linkedin.com/" target="_blank">LinkedIn</a>
+      </div>
+    </div>
+
+    <section>
+      <h2 class="section-title">關於我們</h2>
+      <div class="about-box">
+        ✨ 玩美計畫 — 讓每一天都成為值得回憶的故事
+           你喜歡與人交流、享受不同的生活體驗嗎？
+           玩美計畫正在尋找充滿活力、開朗自信的女性夥伴，一起創造獨特的陪伴體驗！
+           我們是誰？
+           玩美計畫是一個專注於「一日陪伴體驗」的平台，為客戶規劃美食探店、景點遊覽、活動出遊等豐富行程。我們相信，真誠的陪伴能讓人感受到生活的美好。      </div>
+    </section>
+
+    <section>
+      <h2 class="section-title">需要技能</h2>
+      <div class="skills-grid">
+        <div class="skill-card">
+          <div class="skill-icon">💻</div>
+          <div class="skill-name">情緒價值</div>
+          <div class="skill-desc">唱歌 · 聊天 · 喝酒 · 玩遊戲</div>
+        </div>
+        <div class="skill-card">
+          <div class="skill-icon">運動</div>
+          <div class="skill-name">戶外活動</div>
+          <div class="skill-desc">高爾夫 · 網球 · 沙灘遊艇</div>
+        </div>
+        <div class="skill-card">
+          <div class="skill-icon">📷</div>
+          <div class="skill-name">藝術</div>
+          <div class="skill-desc">演唱會 · 展覽表演 · 彈奏樂器</div>
+        </div>
+        <div class="skill-card">
+          <div class="skill-icon">🔧</div>
+          <div class="skill-name">品味</div>
+          <div class="skill-desc">品酒 · 品茶 · 品咖啡 · 品生活</div>
+        </div>
+          <div class="skill-card">
+          <div class="skill-icon">🔧</div>
+          <div class="skill-name">禮儀</div>
+          <div class="skill-desc">餐桌禮儀 · 晚宴 · 飯局</div>
+      </div>
+    </section>
+
+    <section>
+      <h2 class="section-title">更多</h2>
+      <div class="project-list">
+        <div class="project-card">
+          <div class="project-header">
+            <span class="project-name">加入我們，你可以</span>
+            <span class="project-badge">職缺</span>
+          </div>
+          <p class="project-desc">🗓️ 彈性排班 — 自由選擇工作時間，兼職、全職皆可
+           💰 優渥報酬 — 依行程類型提供具競爭力的薪資
+           🌏 拓展視野 — 探訪城市各地特色景點與餐廳
+           👯 結交人脈 — 認識來自各行各業的有趣朋友
+           💄 提升自我 — 我們提供形象、禮儀與溝通技巧培訓
+</p>
+        </div>
+        <div class="project-card">
+          <div class="project-header">
+            <span class="project-name">我們在尋找？</span>
+            <span class="project-badge">尋找</span>
+          </div>
+          <p class="project-desc">年齡 18–35 歲、個性開朗大方、喜歡社交互動、對生活充滿熱情的妳！不需要特定學歷或經驗，帶著你的笑容與活力就夠了。</p>
+        </div>
+        <div class="project-card">
+          <div class="project-header">
+            <span class="project-name">工作環境安全有保障</span>
+            <span class="project-badge">安全與保障</span>
+          </div>
+          <p class="project-desc">玩美計畫重視夥伴的人身安全，所有行程均有明確規範與緊急聯繫機制，讓你放心出行。</p>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2 class="section-title">聯絡我</h2>
+      <div class="contact-box">
+        <p>📩 立即私訊我們了解詳情，加入玩美計畫，讓生活更精彩！</p>
+        <a class="contact-btn" href="https://line.me/R/ti/p/@798kabdd" target="_blank">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="white" style="vertical-align:middle; margin-right:8px; margin-bottom:2px;">
+            <path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.627-.63h2.386c.349 0 .63.285.63.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.27.173-.51.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.627-.63.349 0 .631.285.631.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.281.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/>
+          </svg>
+          加入 LINE 聯絡我
+        </a>
+      </div>
+    </section>
+
+    <footer>
+      © 2026 玩美計畫 · 以 GitHub Pages 建立
+    </footer>
+  </div>
+</body>
+</html>
